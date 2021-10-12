@@ -1,0 +1,21 @@
+import PropTypes from "prop-types";
+
+const PeopleList = ({ people }) => {
+  if (people.length === 0) {
+    return <p>No people!</p>;
+  }
+
+  return (
+    <ul>
+      {people.map((person) => (
+        <li key={person.id}>{person.name}</li>
+      ))}
+    </ul>
+  );
+};
+
+PeopleList.propTypes = {
+  people: PropTypes.array,
+};
+
+export default PeopleList;

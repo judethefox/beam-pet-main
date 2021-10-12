@@ -1,0 +1,12 @@
+type Person {
+  id: ID!
+  name: String!
+  email: String!
+  created_at: DateTime!
+  updated_at: DateTime!
+}
+
+extend type Query {
+  people: [Person!]! @all
+  person(id: ID @eq): Person @find
+}
