@@ -6,17 +6,19 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Person extends Model
+class Pet extends Model
 {
     use HasFactory;
     use SoftDeletes;
 
     protected $fillable = [
         'name',
-        'description'
+        'age',
+        'species',
     ];
 
-    public function pets() {
-        return $this->hasMany(Pet::class);
+    public function person()
+    {
+        return $this->belongsTo(Person::class);
     }
 }
