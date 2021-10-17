@@ -15,6 +15,7 @@ class PeopleQueryTest extends GraphQLTestCase
                 people {
                     id
                     name
+                    description
                 }
             }
         ');
@@ -39,6 +40,7 @@ class PeopleQueryTest extends GraphQLTestCase
             $expecting['data']['people'][] = [
                 'id' => (string) $person->id,
                 'name' => (string) $person->name,
+                'description' => (string) $person->description,
             ];
         }
 
