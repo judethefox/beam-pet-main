@@ -1,7 +1,8 @@
 type Person {
   id: ID!
   name: String!
-  email: String!
+  description: String!
+  pets: [Pet]!
   created_at: DateTime!
   updated_at: DateTime!
 }
@@ -9,4 +10,14 @@ type Person {
 extend type Query {
   people: [Person!]! @all
   person(id: ID @eq): Person @find
+}
+
+input PersonInput {
+    name: String! @rules(apply: ["string", "required"])
+    description: String!
+}
+
+extend type Mutation {
+    createPerson(input: PersonInput! @spread): Person! @create
+    deletePerson(id: ID!): Person @delete
 }
