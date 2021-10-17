@@ -10,11 +10,11 @@ class MyDocument extends Document {
     const _renderPage = ctx.renderPage;
     ctx.renderPage = () =>
       _renderPage({
-        enhanceApp: (App) => (props) => (
+        enhanceApp: App => props => (
           <JssProvider registry={registry} generateId={generateId}>
             <App {...props} />
           </JssProvider>
-        ),
+        )
       });
 
     const initialProps = await Document.getInitialProps(ctx);
@@ -23,8 +23,8 @@ class MyDocument extends Document {
       ...initialProps,
       styles: [
         ...React.Children.toArray(initialProps.styles),
-        <style id="server-side-styles">{registry.toString()}</style>,
-      ],
+        <style id="server-side-styles">{registry.toString()}</style>
+      ]
     };
   }
 
