@@ -16,6 +16,15 @@ class DatabaseSeeder extends Seeder
     {
         Models\Person::factory()
             ->count(4)
-            ->create();
+            ->create()
+            ->each(function ($person) {
+                $numberOfPets = random_int(0, 5);
+                $pets = Models\Pet::factory()->count($numberOfPets)->make();
+                $pets->each(function($pet) use($person) {
+                    $pet->person_id = $person->id;
+                    $pet->save();
+                });
+            })
+        ;
     }
 }

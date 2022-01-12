@@ -15,6 +15,13 @@ class PersonQueryTest extends GraphQLTestCase
                 person(id: $id) {
                     id
                     name
+                    description
+                    pets {
+                        id
+                        name
+                        age
+                        species
+                    }
                 }
             }
         ', $variables);
@@ -26,6 +33,12 @@ class PersonQueryTest extends GraphQLTestCase
         $person = Models\Person::factory()
             ->create();
 
+        $pets = Models\Pet::factory()->count(2)->make();
+        $pets->each(function($pet) use($person) {
+            $pet->person_id = $person->id;
+            $pet->save();
+        });
+
         $response = $this->query([
             'id' => $person->id,
         ]);
@@ -35,6 +48,15 @@ class PersonQueryTest extends GraphQLTestCase
                 'person' => [
                     'id' => (string) $person->id,
                     'name' => (string) $person->name,
+                    'description' => (string) $person->description,
+                    'pets' => $person->pets->map(static function($pet) {
+                        return [
+                            'id' => $pet->id,
+                            'name'=> $pet->name,
+                            'age'=> $pet->age,
+                            'species'=> $pet->species,
+                        ];
+                    })->toArray(),
                 ],
             ],
         ]);

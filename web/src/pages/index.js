@@ -7,8 +7,8 @@ const useStyles = createUseStyles({
     border: "none",
     borderTop: "2px solid #F0F0F0",
     margin: 0,
-    maxWidth: 240,
-  },
+    maxWidth: 240
+  }
 });
 
 export default function Home() {
@@ -20,10 +20,7 @@ export default function Home() {
         <title>Beam Pets</title>
       </Head>
       <main>
-        <h1>Welcome to Beam Pets!</h1>
-        <p>
-          Get started by editing <code>pages/index.js</code>
-        </p>
+        <h1 className="text-center">Welcome to Beam Pets!</h1>
         <hr className={classes.divider} />
         <PeopleContainer />
       </main>

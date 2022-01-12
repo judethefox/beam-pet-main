@@ -1,3 +1,30 @@
+# Dev notes
+
+## What's implemented
+
+### Backend
+- Added additional description and soft deletes fields for `Person` model.
+- Added `Pet` model and factory.
+- Added `animalSpecies` and `petName` faker providers for the `Pet` factory.
+- Updated database seeder to populate pets as well.
+- Added `Pet` graphql schema, updated `Person` schema.
+- Added unit tests for graphQL queries and mutations, also added some simple unit tests for person and pet factories.
+
+### Frontend
+- Added person page
+- Added `AddPersonForm`, `AddPetForm`, and `PersonContainer` components.
+- Introduced bootstrap to make styling a little easier.
+- Added tests for components.
+
+### Testing
+- Added integration tests for the people and person pages.
+
+### Known issues
+- I'm using `refetch` from `useQuery` to update the info shown on the pages after calling mutations because I couldn't successfully get react-query cache for some reason.
+- I didn't test frontend components with mocked response because I could not get it working. Attempted using enzyme, but it caused some other issues so eventually gave up.
+
+---
+
 # Beam Pets
 
 We love our pets at Beam.

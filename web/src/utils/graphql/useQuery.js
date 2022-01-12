@@ -17,6 +17,6 @@ export default function useGraphQLQuery(query, options) {
   return useQuery({
     ...options,
     queryKey: query,
-    queryFn: fetcher,
+    queryFn: fetcher
   });
 }
